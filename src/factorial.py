@@ -20,21 +20,48 @@ def factorial(num):
             num -= 1
         return fact 
 
+# Función para procesar entrada en formato "desde-hasta"
+def procesar_rango(entrada):
+    """Procesa entrada en formato 'desde-hasta' o un número simple"""
+    if '-' in entrada:
+        partes = entrada.split('-')
+        if len(partes) != 2:
+            return None
+        try:
+            desde = int(partes[0])
+            hasta = int(partes[1])
+            if desde > hasta:
+                return None
+            return (desde, hasta)
+        except ValueError:
+            return None
+    else:
+        try:
+            num = int(entrada)
+            return (num, num)
+        except ValueError:
+            return None
+
 # Verificar si se pasó un argumento
 if len(sys.argv) < 2:
     # Si no se pasó argumento, solicitar al usuario
-    try:
-        num = int(input("Ingrese un número para calcular el factorial: "))
-    except ValueError:
-        print("Error: Debe ingresar un número válido")
-        sys.exit()
+    entrada = input("Ingrese un número o rango (ej. 4 o 4-8): ")
 else:
     # Si se pasó argumento, usarlo
-    try:
-        num = int(sys.argv[1])
-    except ValueError:
-        print("Error: El argumento debe ser un número válido")
-        sys.exit()
+    entrada = sys.argv[1]
 
-print("Factorial ",num,"! es ", factorial(num)) 
+# Procesar la entrada
+rango = procesar_rango(entrada)
+if rango is None:
+    print("Error: Formato inválido. Use un número (ej. 5) o rango (ej. 4-8)")
+    sys.exit()
+
+desde, hasta = rango
+
+# Calcular y mostrar factoriales
+print(f"\n--- Cálculo de Factoriales de {desde} a {hasta} ---")
+for num in range(desde, hasta + 1):
+    resultado = factorial(num)
+    print(f"Factorial de {num}! = {resultado}")
+print() 
 
