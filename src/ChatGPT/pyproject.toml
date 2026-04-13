@@ -1,0 +1,65 @@
+# ===========================================================================
+# pyproject.toml — configuración de herramientas de calidad de código
+# ===========================================================================
+
+# ---------------------------------------------------------------------------
+# [tool.black] — formateador automático de código
+# ---------------------------------------------------------------------------
+# black reformatea el código fuente Python de forma determinista,
+# eliminando discusiones de estilo dentro del equipo.
+[tool.black]
+
+# line-length: longitud máxima de línea en caracteres.
+# Black usa 88 por defecto (ligeramente mayor que los 79 del PEP 8)
+# para reducir la cantidad de saltos de línea innecesarios.
+line-length = 88
+
+# target-version: versiones de Python para las que se genera el código.
+# Black puede usar sintaxis moderna (p. ej. f-strings, walrus operator)
+# solo si la versión mínima soportada lo permite.
+# "py311" → se apunta a Python 3.11 como mínimo.
+target-version = ["py311"]
+
+# ---------------------------------------------------------------------------
+# [tool.ruff] — linter y formateador ultrarrápido (reemplaza flake8+isort)
+# ---------------------------------------------------------------------------
+# ruff analiza el código en busca de errores, malas prácticas y problemas
+# de estilo. Es compatible con la mayoría de reglas de flake8/pylint/isort
+# pero órdenes de magnitud más rápido al estar escrito en Rust.
+[tool.ruff]
+
+# line-length: igual que en black, define el límite de caracteres por línea
+# que ruff usa al evaluar reglas de longitud (E501, etc.).
+# Debe coincidir con el valor de black para evitar conflictos.
+line-length = 88
+
+# target-version: versión mínima de Python objetivo.
+# Permite a ruff sugerir modernizaciones de sintaxis apropiadas
+# (p. ej. usar f-strings o type hints nativos disponibles desde esa versión).
+# "py311" → Python 3.11 como mínimo.
+target-version = "py311"
+
+# ---------------------------------------------------------------------------
+# [tool.ruff.lint] — reglas de análisis estático activadas
+# ---------------------------------------------------------------------------
+[tool.ruff.lint]
+
+# select: conjuntos de reglas habilitados. Cada código es un prefijo que
+# activa todas las reglas de esa categoría:
+#
+#   E  → pycodestyle errors     — errores de estilo PEP 8
+#          (indentación, espacios, líneas en blanco, etc.)
+#   F  → pyflakes               — errores lógicos comunes
+#          (variables no usadas, imports no usados, nombres indefinidos)
+#   I  → isort                  — orden y formato de imports
+#          (imports deben estar ordenados alfabéticamente por sección)
+#   B  → flake8-bugbear         — bugs potenciales y malas prácticas
+#          (p. ej. argumentos mutables por defecto, bucles con side-effects)
+#   UP → pyupgrade              — modernización de sintaxis Python
+#          (p. ej. reemplazar "old-style" format strings por f-strings,
+#           usar | para uniones de tipos en Python 3.10+, etc.)
+select = ["E", "F", "I", "B", "UP"]
+
+# ignore: reglas específicas a suprimir globalmente.
+# Lista vacía → no se ignora ninguna regla de las seleccionadas arriba.
+ignore = []
