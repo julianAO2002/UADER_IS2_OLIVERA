@@ -1,119 +1,47 @@
-# 🔍 Generador de Números Primos
+# UADER IS2 - Ingeniería de Software 2
 
-## Propósito del Repositorio
+Repositorio de trabajos prácticos del curso **Ingeniería de Software 2** de la Universidad Autónoma de Entre Ríos (UADER).
 
-Este repositorio contiene la implementación de un **programa educativo en Python** diseñado para identificar y visualizar los números primos dentro de un intervalo específico. El proyecto es parte del curso **Ingeniería de Software 2** de la Universidad Autónoma de Entre Ríos (UADER).
-
-### 📋 Objetivos Principales
-
-El proyecto busca:
-- Comprender los algoritmos de búsqueda de números primos
-- Aplicar conceptos de control de flujo en Python
-- Implementar soluciones eficientes para problemas matemáticos
-
-## 🚀 Características del Proyecto
-
-### Estructura del Repositorio
-
-* **src/** - Contiene el código fuente principal
-* **doc/** - Documentación del proyecto
-* **bin/** - Archivos ejecutables y compilados
-* **script/** - Scripts auxiliares para automatización
-
-### Funcionalidades Principales
-
-1. **Detección de números primos** - Identifica todos los números primos en un rango definido
-2. **Rango configurable** - Permite establecer intervalos personalizados
-3. **Algoritmo simple** - Implementa un método directo de verificación por divisibilidad
-
-## 💻 Uso del Programa
-
-### Requisitos
-
-* Python 3.x instalado en el sistema
-* Acceso a terminal o línea de comandos
-
-### Pasos para Ejecutar
-
-1. Navegar al directorio raíz del proyecto
-2. Ejecutar el comando: `python src/primes.py`
-3. El programa mostrará todos los números primos entre 1 y 500
-
-## 🔬 Algoritmo Implementado
-
-### Concepto Base
-
-El programa verifica cada número en el rango evaluando si posee divisores además de 1 y él mismo.
-
-**Pseudocódigo:**
+## Estructura del Repositorio
 
 ```
-Para cada número n en [1, 500]:
-    Si n > 1:
-        Verificar divisores desde 2 hasta n-1
-        Si no hay divisores:
-            El número es primo → mostrar
-        Si hay divisores:
-            El número no es primo → descartar
+src/
+├── tp1/        Ejercicios introductorios (primos, factorial, Collatz)
+├── tp3/        Ejercicios varios
+├── tp4/        Patrones de diseño estructurales
+├── tp5/        Patrones de diseño de comportamiento
+└── ChatGPT/    Calculadora RPN
+doc/            Documentación y gráficos
 ```
 
-### Complejidad del Algoritmo
+## Trabajos Prácticos
 
-* **Complejidad temporal:** O(n²) - peor caso
-* **Complejidad espacial:** O(1) - sin uso de memoria adicional
+### TP1
 
-## 📊 Ejemplo de Salida
+Ejercicios introductorios en Python: números primos, factorial (OOP), conjetura de Collatz.
 
-```
-Prime numbers between 1 and 500 are:
-2
-3
-5
-7
-11
-13
-17
-19
-23
-29
-...
-```
+### TP3
 
-## 🎓 Conceptos Educativos
+Ejercicios varios de programación orientada a objetos.
 
-### Temas Cubiertos
+### TP4 - Patrones Estructurales
 
-* Iteración y bucles en Python
-* Condicionales y control de flujo
-* Uso del `else` en bucles `for`
-* Operador módulo para verificación de divisibilidad
+Implementación de patrones de diseño estructurales: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy.
 
-### Mejoras Futuras
+### TP5 - Patrones de Comportamiento
+Implementación de patrones de diseño de comportamiento:
 
-- Implementar el algoritmo de Criba de Eratóstenes para mejor eficiencia
-- Agregar interfaz gráfica de usuario
-- Crear versiones en otros lenguajes de programación
-- Optimizar para rangos más grandes
+1. **Chain of Responsibility** - Cadena que procesa números 1-100 clasificándolos en primos, pares o sin consumir.
+2. **Iterator** - Iterador sobre una cadena de caracteres en sentido directo y reverso.
+3. **Observer** - Sistema de notificación donde listeners reaccionan cuando se emite su propio ID.
+4. **State (Scanner)** - Radio con barrido de estaciones AM/FM y memorias M1-M4.
+5. **Memento (Memory)** - Historial de hasta 4 estados con recuperación por índice (`undo(steps=0..3)`).
 
-## 📚 Referencias y Recursos
+## Requisitos
 
-Para profundizar en el tema de números primos y algoritmos, consulta:
+- Python 3.x
 
-- **[Khan Academy - Números Primos](https://www.khanacademy.org/math/arithmetic-home/factors-multiples/prime-numbers/v/prime-numbers)** - Recurso educativo sobre teoría de números primos
-- [Documentación oficial de Python 3](https://docs.python.org/3/)
-- [Wikipedia - Número Primo](https://es.wikipedia.org/wiki/N%C3%BAmero_primo)
+## Autor
 
-## 👥 Autor
-
-Desarrollado como parte del curso **Ingeniería de Software 2**  
-**Universidad Autónoma de Entre Ríos (UADER)**
-
----
-
-### 📝 Notas Importantes
-
-* Este código es de propósito educativo
-* Se recomienda revisar y entender cada línea del código
-* Para proyectos de producción, considerar algoritmos más optimizados
-
-**Última actualización:** 31 de marzo de 2026
+**Julian Olivera**  
+Ingeniería de Software 2 — UADER
