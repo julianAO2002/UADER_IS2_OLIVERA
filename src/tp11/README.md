@@ -2,6 +2,8 @@
 
 **Ingeniería de Software II — UADER FCyT** · Julian Olivera
 
+**Repositorio:** <https://github.com/julianAO2002/UADER_IS2_OLIVERA> — TP11 en [`src/tp11`](https://github.com/julianAO2002/UADER_IS2_OLIVERA/tree/main/src/tp11)
+
 | Carpeta | Contenido |
 |---------|-----------|
 | [`collatz/`](collatz/) | programa original (`collatz_original.py`), versión corregida (`collatz.py`), casos de test unitarios y funcionales |
@@ -283,6 +285,9 @@ Mi opinión es que el **total de defectos será mayor que el esperable** por la 
 ## 6. json2csv
 
 Proyecto completo en [`json2csv/`](json2csv/): filtro `python json2csv.py {-i input} {-o output} {-d delimitador}`, controles de excepción, venv, esqueleto CookieCutter, CONTEXT.md, README.md, CHANGELOG.md, requirements.txt, licencia MIT, VERSION y BUILD, ruff, black, PEP8 (pycodestyle), PEP257 (pydocstyle), mypy y pyright en modo estricto, pytest con 95% de cobertura, bandit sin observaciones, documentación con pdoc y workflow de CI/CD en [`.github/workflows/tp11-json2csv.yml`](../../.github/workflows/tp11-json2csv.yml).
+
+- Código: <https://github.com/julianAO2002/UADER_IS2_OLIVERA/tree/main/src/tp11/json2csv>
+- Ejecuciones del workflow de CI/CD: <https://github.com/julianAO2002/UADER_IS2_OLIVERA/actions/workflows/tp11-json2csv.yml>
 
 ---
 
