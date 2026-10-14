@@ -13,6 +13,7 @@ src/
 ├── tp6/        Ingeniería reversa de getJason
 ├── tp7/        Refactorización con patrones de diseño
 ├── tp8/        Re-ingeniería del proceso de pagos (arquitectura en capas)
+├── tp11/       Gestión de calidad (Collatz, defectos, json2csv con CI/CD)
 └── ChatGPT/    Calculadora RPN
 doc/            Documentación y gráficos
 ```
@@ -55,6 +56,15 @@ Re-ingeniería que automatiza la selección de cuenta para liberar pagos: basta 
 - **Patrones**: Singleton (token → clave), Chain of Command (cuentas), Iterator (listado cronológico de pagos), Chain of Responsibility (validación de argumentos).
 - **Arquitectura en capas** organizada en paquetes: `config/`, `presentation/`, `business/`, `domain/`, `data/`.
 - Versión 1.2.0 — pylint 10.00/10.
+
+### TP11 - Gestión de Calidad
+
+Respuestas en [`src/tp11/README.md`](src/tp11/README.md) y en PDF (`TP11_Respuestas_OliveraJulian.pdf`).
+
+- **Collatz**: requerimientos R/F, casos de test T1–T26 (unitarios y funcionales), matriz RTMX, inspección y 9 sesiones de test con 34 defectos, PCE por fase y densidad de defectos.
+- **Proyección de defectos**: modelo de regresión sobre defectos acumulados (`defectos/proyeccion_defectos.py`).
+- **Teoría**: TEP en Kanban, garantía y PCE, línea de base organizacional, deuda técnica y efecto de una multa.
+- **json2csv**: filtro JSON → CSV con venv, CookieCutter, ruff, black, mypy, pyright, bandit, pytest (95% de cobertura), pdoc y workflow de CI/CD en `.github/workflows/tp11-json2csv.yml`.
 
 ## Requisitos
 

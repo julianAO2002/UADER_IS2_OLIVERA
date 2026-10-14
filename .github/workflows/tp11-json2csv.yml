@@ -1,0 +1,112 @@
+name: TP11 json2csv CI/CD
+
+on:
+  pull_request:
+    paths:
+      - "src/tp11/json2csv/**"
+      - ".github/workflows/tp11-json2csv.yml"
+  push:
+    branches: [main]
+    paths:
+      - "src/tp11/json2csv/**"
+      - ".github/workflows/tp11-json2csv.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tp11-json2csv-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: src/tp11/json2csv
+
+jobs:
+  calidad:
+    name: CI - calidad y pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ambiente virtual (venv) y dependencias
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install --upgrade pip
+          .venv/bin/pip install -r requirements.txt
+
+      - name: ruff (reglas de formato y lint)
+        run: .venv/bin/ruff check .
+
+      - name: black (formato consistente)
+        run: .venv/bin/black --check .
+
+      - name: pycodestyle (PEP8)
+        run: .venv/bin/pycodestyle --max-line-length=120 --exclude=.venv .
+
+      - name: pydocstyle (PEP257)
+        run: .venv/bin/pydocstyle --convention=pep257 src json2csv.py
+
+      - name: mypy
+        run: .venv/bin/mypy
+
+      - name: pyright
+        run: .venv/bin/pyright
+
+      - name: bandit (seguridad)
+        run: .venv/bin/bandit -c pyproject.toml -r src json2csv.py
+
+      - name: pytest (cobertura >= 85%)
+        run: .venv/bin/python -m pytest
+
+      - name: Prueba de humo del filtro
+        run: echo '[{"a":1,"b":2}]' | .venv/bin/python json2csv.py -d ';'
+
+  docs:
+    name: CD - documentación (pdoc) y build
+    needs: calidad
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generar documentación con pdoc
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -r requirements.txt
+          .venv/bin/pdoc -o docs/api ./src/json2csv ./src/json2csv/core.py ./src/json2csv/cli.py
+          echo "version=$(cat VERSION) build=$(cat BUILD) ci_run=${{ github.run_number }} commit=${{ github.sha }}" > docs/api/BUILD_INFO.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: json2csv-docs-${{ github.run_number }}
+          path: src/tp11/json2csv/docs/api
+
+      - uses: actions/upload-pages-artifact@v3
+        if: vars.DOCS_PAGES == 'true'
+        with:
+          path: src/tp11/json2csv/docs/api
+
+  pages:
+    name: CD - publicar documentación en GitHub Pages
+    needs: docs
+    if: vars.DOCS_PAGES == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
