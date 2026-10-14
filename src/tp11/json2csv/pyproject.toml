@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "json2csv"
+version = "1.0.0"
+description = "Filtro para convertir JSON a CSV."
+readme = "README.md"
+authors = [
+  {name = "Julian Olivera", email = "julianolivera200277@gmail.com"}
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+license = {text = "MIT"}
+dependencies = []
+requires-python = ">= 3.12"
+
+[project.scripts]
+json2csv = "json2csv.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/json2csv"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors (PEP8)
+    "W",   # pycodestyle warnings (PEP8)
+    "F",   # Pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "D",   # pydocstyle (PEP257)
+    "S",   # flake8-bandit
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "D103"]
+
+[tool.black]
+line-length = 120
+target-version = ["py312"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src/json2csv"]
+
+[tool.pyright]
+include = ["src/json2csv"]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+reportExplicitAny = false
+reportAny = false
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "--cov=json2csv --cov-branch --cov-report=term-missing --cov-fail-under=85"
+
+[tool.coverage.run]
+source = ["json2csv"]

@@ -1,0 +1,14 @@
+# json2csv solo usa la biblioteca estándar de Python (>= 3.12) en tiempo de
+# ejecución. Estas son las dependencias del ambiente virtual de desarrollo/CI:
+#   python -m venv .venv && .venv/bin/pip install -r requirements.txt
+pytest==9.1.1
+pytest-cov==7.1.0
+coverage==7.16.2
+ruff==0.17.0
+black==26.10.1
+pycodestyle==2.15.0
+pydocstyle==6.3.0
+mypy==2.4.0
+pyright==1.1.414
+bandit==1.9.4
+pdoc==16.0.0
